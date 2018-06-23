@@ -3,7 +3,7 @@ import itchat
 import re
 import io
 from os import path
-# from wordcloud import WordCloud, ImageColorGenerator
+from wordcloud import WordCloud, ImageColorGenerator
 import jieba
 import numpy as np
 from PIL import Image
@@ -18,13 +18,13 @@ def draw(datas):
         print(key)
         print(datas[key])
         print('________________________')
-        # plt.bar(key, datas[key])
+        plt.bar(key, datas[key])
 
-    # plt.legend()
-    # plt.xlabel('sex')
-    # plt.ylabel('rate')
-    # plt.title("Gender of Alex's friends")
-    # plt.show()
+    plt.legend()
+    plt.xlabel('sex')
+    plt.ylabel('rate')
+    plt.title("Gender of Alex's friends")
+    plt.show()
 
 def parse_friedns():
     itchat.login()
@@ -60,7 +60,10 @@ def parse_signature():
         signature = rep.sub("", signature)
         siglist.append(signature)
     text = "".join(siglist)
-    with io.open('text.txt', 'a', encoding='utf-8') as f:
+    with io.open('D:\\pycharm_projects\\chat\\wechat\\signature.txt', 'a', encoding='utf-8') as f:
+        f.write(text)
+        f.close()
+    with io.open('D:\\pycharm_projects\\chat\\wechat\\text.txt', 'a', encoding='utf-8') as f:
         wordlist = jieba.cut(text, cut_all=True)
         word_space_split = " ".join(wordlist)
         f.write(word_space_split)
@@ -68,11 +71,11 @@ def parse_signature():
 
 
 def draw_signature():
-    text = open(u'text.txt', encoding='utf-8').read()
-    coloring = np.array(Image.open('3.png'))
-    my_wordcloud = WordCloud(background_color="white", max_words=2000,
+    text = open(u'D:\\pycharm_projects\\chat\\wechat\\text.txt', encoding='utf-8').read()
+    coloring = np.array(Image.open('D:\\chrome_downloads\\china.jpg'))
+    my_wordcloud = WordCloud(background_color="black", max_words=2000,
                          mask=coloring, max_font_size=60, random_state=42, scale=2,
-                         font_path="DroidSansFallbackFull.ttf").generate(text)
+                         font_path="C:\\Windows\\Fonts\\msyhbd.ttc").generate(text)
     image_colors = ImageColorGenerator(coloring)
     plt.imshow(my_wordcloud.recolor(color_func=image_colors))
     plt.imshow(my_wordcloud)
@@ -81,3 +84,5 @@ def draw_signature():
 
 if __name__ == '__main__':
     parse_friedns()
+    parse_signature()
+    draw_signature()
