@@ -52,7 +52,7 @@ fig, ax = plt.subplots(figsize=(10, 10))
 # 输出中文字体
 myfont = matplotlib.font_manager.FontProperties(fname="C:\\Windows\\Fonts\\msyhbd.ttc")
 # 图表标题设置，想要标题居中可以去掉x，y的设置
-plt.title(u'朋友圈个性签名词频统计', fontproperties=myfont, fontsize=20, x=0.001, y=1.02)
+plt.title(u'朋友圈签名词频统计', fontproperties=myfont, fontsize=20, x=0.001, y=1.02)
 # 图表x轴设置
 ax.set_xlabel(u'出现次数', fontproperties=myfont, fontsize=20, x=0.06, y=1.02, color="gray")
 # 边框线设置，去除上方右方的框线，左下框线置灰融入背景
